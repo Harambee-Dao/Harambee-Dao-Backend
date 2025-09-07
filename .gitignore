@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.env
+.env.*
+!.env.example
+.coverage*
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+
+# Node/Hardhat (if any nested usage)
+node_modules/
+
+# VSCode / IDE
+.vscode/
+.idea/
+
+# Build
+build/
+dist/
+
+# Misc
+.DS_Store
+
+# Jupyter notebooks
+.ipynb_checkpoints/
+*.ipynb
