@@ -16,6 +16,8 @@ dependencies = [
   "pydantic-settings>=2.4.0",
   "python-dotenv>=1.0.1",
   "requests>=2.32.0",
+  "twilio>=9.0.0",
+  "gunicorn>=21.2.0",
 ]
 
 [project.optional-dependencies]

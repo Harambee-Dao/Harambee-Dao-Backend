@@ -1,0 +1,45 @@
+services:
+  - type: web
+    name: harambee-dao-backend
+    env: python
+    plan: starter
+    buildCommand: pip install -e .
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: LOG_LEVEL
+        value: INFO
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: PORT
+        value: 10000
+      # Add your environment variables here
+      - key: TWILIO_ACCOUNT_SID
+        sync: false  # Set this in Render dashboard
+      - key: TWILIO_AUTH_TOKEN
+        sync: false  # Set this in Render dashboard
+      - key: TWILIO_PHONE_NUMBER
+        sync: false  # Set this in Render dashboard
+      - key: SECRET_KEY
+        generateValue: true  # Render will generate a secure key
+      - key: GROQ_API_KEY
+        sync: false  # Set this in Render dashboard
+      - key: GROQ_API_URL
+        value: https://api.groq.com/openai/v1/chat/completions
+      - key: IPFS_API_URL
+        value: https://ipfs.infura.io:5001
+      - key: ORACLE_SIGNER
+        value: "0x0000000000000000000000000000000000000000"
+      - key: CELESTIA_ENDPOINT
+        value: "https://rpc.celestia.pops.one"
+      - key: ACCESS_TOKEN_EXPIRE_MINUTES
+        value: "30"
+      - key: RATE_LIMIT_PER_MINUTE
+        value: "60"
+      - key: OTP_RATE_LIMIT_PER_HOUR
+        value: "5"
+    healthCheckPath: /health
+    autoDeploy: true
+    branch: main
+    rootDir: .
