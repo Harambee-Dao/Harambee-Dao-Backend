@@ -1,26 +1,16 @@
 services:
   - type: web
-    name: harambee-dao-backend
+    name: harambee-dao-backend-free
     env: python
     plan: free
-    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
+    buildCommand: pip install -e .
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
-    runtime: python-3.11.9
+    runtime: python-3.11.0
     envVars:
       - key: APP_ENV
         value: production
       - key: LOG_LEVEL
         value: INFO
-      - key: PYTHON_VERSION
-        value: 3.11.0
-      - key: PORT
-        value: 10000
-      # Note: Set sensitive variables manually in Render dashboard
-      # TWILIO_ACCOUNT_SID - Set in dashboard
-      # TWILIO_AUTH_TOKEN - Set in dashboard
-      # TWILIO_PHONE_NUMBER - Set in dashboard
-      # SECRET_KEY - Set in dashboard
-      # GROQ_API_KEY - Set in dashboard (optional)
       - key: GROQ_API_URL
         value: https://api.groq.com/openai/v1/chat/completions
       - key: IPFS_API_URL
@@ -38,4 +28,3 @@ services:
     healthCheckPath: /health
     autoDeploy: true
     branch: main
-    rootDir: .
